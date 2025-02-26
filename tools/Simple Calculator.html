@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calculator</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <style>
+        body{
+            background-color: #e7ddd3;
+        }
+        .w3-teal{
+            background-color: rgb(132, 130, 118) !important;
+            text-align: center;
+            padding: 50px;
+            border-radius: 10px;
+            box-shadow: 10px 10px 10px rgb(47, 46, 46);
+        }
+        input{
+            display: block;
+            width: 100%;
+            padding: 20px !important;
+            margin: 10px 0;
+            border: solid 1px black;
+            border-radius: 10px;
+        }
+        button{
+            background-color: #04b3f8;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            margin: 5px ;
+            padding: 10px 20px;
+        }
+        button:hover{
+            background-color: #275280;
+        }
+        #result{
+            font-weight: bold;
+            color: white;
+            margin-bottom: 0px;
+        }
+    </style>
+    <script>
+        function calculate(method){
+            const num1 = parseFloat(document.getElementById("firstNumber").value);
+            const num2 = parseFloat(document.getElementById("secondNumber").value);
+            const resultField=document.getElementById("result");
+            if(isNaN(num1)||isNaN(num2)){
+                result.innerHTML="Please enter a valid number";
+                return;
+            }
+            let result=0;
+            if(method==="add"){result=num1+num2;}
+            else if(method==="subtract"){result=num1-num2;}
+            else if(method==="multiply"){result=num1*num2;}
+            else if(method==="divide"){
+                if(num2===0){
+                    resultField.innerHTML="Cannot divide by zero.";
+                    resultField.style.color="red";
+                    return;
+                }
+                result=num1/num2;
+            }
+            resultField.style.color="white";
+            resultField.innerHTML="Result: "+result.toFixed(2);
+        }
+        function clearFields(){
+            document.getElementById("firstNumber").value=" ";
+            document.getElementById("secondNumber").value=" ";
+            document.getElementById("result").innerHTML=" ";
+        }
+    </script>
+</head>
+<body>
+    <div class="w3-teal w3-display-topmiddle w3-card-4 w3-margin-top">
+        <h1>Calculator</h1>
+        <input class="w3-input w3-border" type="number" id="firstNumber" placeholder="Enter first number">
+        <input class="w3-input w3-border" type="number" id="secondNumber" placeholder="Enter second number">
+
+        <button onclick="calculate('add')">Add</button>
+        <button onclick="calculate('subtract')">Subtract</button>
+        <button onclick="calculate('multiply')">Multiply</button>
+        <button onclick="calculate('divide')">Divide</button>
+        <button onclick="clearFields()">Clear</button>
+
+        <p id="result"></p>
+    </div>
+</body>
+</html>
